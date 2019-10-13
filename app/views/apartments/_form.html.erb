@@ -1,4 +1,11 @@
 <%= form_for @apartment do |f| %>
     Name: <%= f.text_field :name %>
     Address: <%= f.text_field :address %>
-    Number of Floor Plans: <%=f.text_field :num_of 
+    Number of Floor Plans: <%=f.text_field :num_of_floor_plans %>
+    <h4>Floor Plans</h4>
+    <%= f.fields_for :floor_plans, @apartment.floor_plans do |fp|%>
+        Type: <%= fp.text_field :type %>
+        Max Tenants:  <%= fp.text_field :max_tenants %>
+        Rental Price: <%= fp.text_field :price %>
+        Description: <%= fp.text_field :description %>
+        <%= fp.collection_check_boxes > 

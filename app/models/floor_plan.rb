@@ -14,7 +14,7 @@ class FloorPlan < ApplicationRecord
         layout_attributes.values.each do |layout_attr|
             if layout_attr[:name].present? 
                 layout = Layout.find_or_create_by(layout_attr)
-                self.layout << layout
+                self.layouts << layout
             end 
         end 
     end 
