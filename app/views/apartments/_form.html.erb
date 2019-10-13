@@ -1,11 +1,28 @@
 <%= form_for @apartment do |f| %>
-    Name: <%= f.text_field :name %>
-    Address: <%= f.text_field :address %>
-    Number of Floor Plans: <%=f.text_field :num_of_floor_plans %>
+    Name: <%= f.text_field :name %><br />
+    Address: <%= f.text_field :address %><br />
+    Number of Floor Plans: <%=f.text_field :num_of_floor_plans %><br />
     <h4>Floor Plans</h4>
     <%= f.fields_for :floor_plans, @apartment.floor_plans do |fp|%>
-        Type: <%= fp.text_field :type %>
-        Max Tenants:  <%= fp.text_field :max_tenants %>
-        Rental Price: <%= fp.text_field :price %>
-        Description: <%= fp.text_field :description %>
-        <%= fp.collection_check_boxes > 
+        Type: <%= fp.text_field :type %><br />
+        Max Tenants:  <%= fp.text_field :max_tenants %><br />
+        Rental Price: <%= fp.text_field :price %><br />
+        Description: <%= fp.text_field :description %><br />
+        <%= fp.collection_check_boxes :layout_ids, Layout.all, :id, :name %> <br /><br />
+
+        <%= fp.fields_for :layouts, fp.object.layouts.build do |layout_fields| %>
+            <%= label_tag "Create New Layout:" %>
+            <%= layouts_fields.text_field :name  %>
+        <%end%>
+        <br />
+            <% if fp.object.floor_layouts.present? %>
+                <%= fp.fields_for :floor_layouts do |fl| %>
+                    <%= fl.object.layout.name %>
+                    - Quantity? 
+                    <%= fl.text_field :quantity %>
+                    <br />
+                <%end%>
+            <%end%>
+        <%end%>
+    <%=f.submit%>
+<%end%>

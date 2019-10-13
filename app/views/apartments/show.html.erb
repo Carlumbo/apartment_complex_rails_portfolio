@@ -1,2 +1,10 @@
-<h1>Apartments#about</h1>
-<p>Find me in app/views/apartments/about.html.erb</p>
+<% if flash[:notice] %>
+    <div class="warning"><%= flash[:notice] %></div>
+<%end%>
+<%if @apartment.errors.any? %>
+    <% @apartment.errors.full_messages.each do |error_message| %>
+        This issue occurred: <%= error_message %><br />
+    <%end%>
+<%end%>
+<h3>Update this apartment and add new floor plans </h3>
+    <%= render 'form', apartment: @apartment, floor_plans: @apartment.floor_plans.to_a %>

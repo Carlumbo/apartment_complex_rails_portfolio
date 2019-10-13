@@ -1,8 +1,8 @@
 <h3>Landlord Profile:</h3>
 Name: <%= @landlord.name %>
 <br />
-<h4>Apartment owned:</h4>
-    <% if @buildings.empty? %>
+<h4>apartments owned:</h4>
+    <% if @apartments.empty? %>
      <p> It looks like you dont have any apartments at the moment, would you like to buy one?</p>
     <%else%>
         <p>Choose an Apartment to update or add a new apartment. </p>

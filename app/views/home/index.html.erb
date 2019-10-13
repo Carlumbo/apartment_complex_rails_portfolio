@@ -1,0 +1,12 @@
+<h2>Hi Welcome to Palumbo Property Management</h2>
+<% if current_user %> 
+         <% if current_user.role.nil? %>
+           <p>Are you signing up to be a landlord with us?<p>
+           <h3>click here to begin your application <%= link_to('landlord', new_landlord_path) %>
+        <%else%>
+        <p>Your Role is <%=current_user.role %>. </p>
+        <%if current_user.role == 'landlord' %>
+            <%= link_to('Manage Apartments'), landlord_path(Landlord.find_by(user: current_user))) %>
+        <%end%>
+    <%end%>
+<%end%> 
