@@ -1,0 +1,21 @@
+<h3>Landlord Profile:</h3>
+Name: <%= @landlord.name %>
+<br />
+<h4>Apartment owned:</h4>
+    <% if @buildings.empty? %>
+     <p> It looks like you dont have any apartments at the moment, would you like to buy one?</p>
+    <%else%>
+        <p>Choose an Apartment to update or add a new apartment. </p>
+        <ul>
+            <% @apartments.each do |apartment| %>
+                <li><%= link_to apartment.name, landlord_apartment_path(@landlord, apartment) %></li>
+            <%end%>
+        </ul>
+    <%end%>
+<%end%>
+
+<%= link_to 'Add New Apartment Complex', new_landlord_apartment_path(@landlord) %>
+<br />
+<%= link_to 'View Landlords', index_path%>
+
+

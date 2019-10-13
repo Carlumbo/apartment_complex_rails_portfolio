@@ -1,0 +1,8 @@
+<h3>New Landlord Application</h3>
+<%if @landlord.errors.any? %>
+    <% @landlord.errors.full_messages.each do |error_messae| %>
+        This Went Wrong: <%= error_message %> <br />
+    <%end%>
+<%end%>
+
+<%=render 'form', landlord: @landlord %>
