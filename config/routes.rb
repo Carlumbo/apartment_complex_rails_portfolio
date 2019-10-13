@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
-  get 'floor_plans/index'
-  get 'floor_plans/show'
-  get 'tenants/index'
-  get 'tenants/show'
-  get 'tenants/edit'
-  get 'tenants/new'
-  get 'tenants/_form'
 
-  get 'landlords/about'
-  get 'landlords/index'
-  get 'landlords/show'
 
-  root 'apartments#home'
+  get 'landlords/:id/larger_than_4_tenants', :to => 'landlords#larger_than_4_tenants', :as => :larger_than_4_tenants
+  get '/landlords/index', :to => 'landlords#index', :as => :index
+  post 'landlords/:id/apartment/new', :to => 'apartments#create'
 
-  get 'apartments/about'
-  get 'apartments/home'
-  get 'apartments/contact'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :landlords do
+  	resources :apartments do 
+  	  resources :floor_plans, only: [:larger_than_4_tenants]
+    end
+  end
+  resources :tenants
+  #devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+
+  root 'homepage#index'
+
 end
