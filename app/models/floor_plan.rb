@@ -1,5 +1,6 @@
 class FloorPlan < ApplicationRecord
-    belongs_to: :apartment
+    self.inheritance_column = :foo
+    belongs_to :apartment
     has_many :tenants 
     has_many :floor_layouts
     has_many :layouts, through: :floor_layouts

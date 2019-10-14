@@ -1,6 +1,6 @@
 <h3>New Landlord Application</h3>
 <%if @landlord.errors.any? %>
-    <% @landlord.errors.full_messages.each do |error_messae| %>
+    <% @landlord.errors.full_messages.each do |error_message| %>
         This Went Wrong: <%= error_message %> <br />
     <%end%>
 <%end%>

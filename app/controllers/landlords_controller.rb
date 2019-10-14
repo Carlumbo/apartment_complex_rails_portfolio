@@ -3,7 +3,8 @@ class LandlordsController < ApplicationController
   end
 
   def index
-    @landlord = Landlord.all
+    @landlords = Landlord.all
+    @apartments = Apartment.all
     render :index
   end
 
@@ -24,7 +25,7 @@ class LandlordsController < ApplicationController
 
   def show
     @landlord = Landlord.find(params[:id])
-    @apartments = @landlord.apartment.all 
+    @apartments = @landlord.apartments.all 
   end
 
   def landlord_params
