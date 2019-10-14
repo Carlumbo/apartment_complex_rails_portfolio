@@ -14,7 +14,9 @@ class ApartmentsController < ApplicationController
     @apartment = @landlord.apartments.build
     @apartment.update_attributes(apartment_params)
     if @apartment.save 
+      binding.pry
           redirect_to landlord_apartment_path(@apartment.landlord, @apartment)
+                      
     else 
           flash[:notice] = "This Apartment Complex could not be saved"
           redirect_to new_landlord_apartment_path(@landlord)
@@ -22,12 +24,17 @@ class ApartmentsController < ApplicationController
   end 
 
   def update 
+   # binding.pry
     @url = landlord_apartment_path 
-    @apartment = Apartment.find(params[:id])
+
+    @apartment= Apartment.find(params[:id])
     @apartment.update_attributes(apartment_params)
+    binding.pry
+    
     if @apartment.save 
       flash[:notice] = "The apartment has been saved!"
-      redirect_to landlord_apartment_path(@apartment.landlord, @apartment)
+      binding.pry
+         redirect_to landlord_path(@apartment.landlord, @apartment)
     else 
       flash[:notice] = "The apartment could not be saved"
       render :show

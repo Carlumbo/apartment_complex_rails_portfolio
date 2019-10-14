@@ -2,7 +2,6 @@
     <p> All the landlords we have: </p>
     <ul>
         <% @landlords.each do |landlord| %>
-            <%binding.pry%>
             <li><%= link_to landlord.name %></li>
         <% end %>
     </ul>
